@@ -45,5 +45,15 @@
         <jarDirectory url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://D:/idea/jdbc" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://D:/idea/jdbc" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>
