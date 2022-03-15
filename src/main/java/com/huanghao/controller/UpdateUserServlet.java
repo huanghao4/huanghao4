@@ -44,7 +44,7 @@ public class UpdateUserServlet extends HttpServlet {
 
         HttpSession session=request.getSession();
         User user=(User) session.getAttribute("user");
-        //int id=user.getId();
+       // int id=user.getId();
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         String email=request.getParameter("email");
@@ -70,11 +70,10 @@ public class UpdateUserServlet extends HttpServlet {
 
         try {
             userDao.updateUser(con,user);
+            request.getRequestDispatcher("accountDetails").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
-        request.getRequestDispatcher("WEB-INF/views/userinfo.jsp").forward(request,response);
     }
 }
