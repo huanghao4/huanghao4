@@ -7,9 +7,9 @@ import java.io.IOException;
 //way 1 use web.xml
 //way 2 use WebFilter
 
-@WebFilter(filterName = "HelloFilter",
-urlPatterns = {"/home","/login","/register.jsp"}
-)
+//@WebFilter(filterName = "HelloFilter",
+//urlPatterns = {"/home","/login","/register.jsp"}
+//)
 //test 1:url/hello-filter is only for one Servlet - HelloServlet
 //test 2:url/* -this filter of for all servlet
 //test 3:3 url - this filter for these 3 url only

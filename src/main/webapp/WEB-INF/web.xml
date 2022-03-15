@@ -70,7 +70,7 @@
 
 <!--    <servlet>-->
 <!--        <servlet-name>LifeCycleServlet</servlet-name>-->
-<!--        <servlet-class>com.example.huanghao2020211001001224.LifeCycleServlet</servlet-class>-->
+<!--        <servlet-class>com.example.huanghao2020211001001224.LifeCycle1Servlet</servlet-class>-->
 <!--    </servlet>-->
     <!--    <servlet-mapping>-->
 <!--        <servlet-name>Name</servlet-name>-->
