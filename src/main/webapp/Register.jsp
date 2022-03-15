@@ -11,12 +11,12 @@
     <title>Title</title>
 </head>
 <body>
-    <form name="form" method="post" action="register">
+    <form name="form" method="post" action="jdbc">
         <input type="text" placeholder="username" name="username"><br>
         <input type="password" placeholder="password" name="password"><br>
         <input type="email" placeholder="email" name="email"><br>
-        <input type="radio" name="sex" value="man" />男
-        <input type="radio" name="sex" value="woman" />女<br>
+        <input type="radio" name="sex" value="male" />male
+        <input type="radio" name="sex" value="female" />female<br>
         <input type="text" placeholder="Date of Birth(yy-mm-dd)" name="date"><br>
         <input type="submit" name="submit" id="sb">
     </form>

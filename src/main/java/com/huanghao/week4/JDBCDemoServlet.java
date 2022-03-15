@@ -1,21 +1,60 @@
-package com.example.huanghao2020211001001224;
+package com.huanghao.week4;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-@WebServlet(name = "RegisterServlet", value = "/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+//@WebServlet(name = "JDBCDemoServlet",urlPatterns = {"/jdbc"},
+//        initParams = {
+//        @WebInitParam(name = "driver",value = "com.microsoft.sqlserver.jdbc.SQLServerDriver"),
+//                @WebInitParam(name = "url",value = "jdbc:sqlserver://localhost:1433;DatabaseName=register;encrypt=false"),
+//                @WebInitParam(name = "username",value = "huanghao"),
+//                @WebInitParam(name = "password",value = "123456"),
+//        },
+//        loadOnStartup = 1
+//)
+@WebServlet(urlPatterns = {"/jdbc"},loadOnStartup = 1)
+public class JDBCDemoServlet extends HttpServlet {
     Connection con=null;
-    Statement stmt=null;
+    Statement stmt= null;
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void init() throws ServletException {
+        super.init();
+//        String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";//name=value
+//        String url="jdbc:sqlserver://localhost:1433;DatabaseName=register;encrypt=false";
+//        String username="huanghao";
+//        String userpwd="123456";
+        //1、get servlet config
+        //ServletConfig config=getServletConfig();
+        //2、get param
+        //String driver=config.getInitParameter("driver");
+        //String url=config.getInitParameter("url");
+        //String username=config.getInitParameter("username");
+        //String password=config.getInitParameter("password");
+
+        ServletContext context=getServletContext();
+        String driver=context.getInitParameter("driver");
+        String url=context.getInitParameter("url");
+        String username=context.getInitParameter("username");
+        String password=context.getInitParameter("password");
+
+        try {
+            Class.forName(driver);
+            con= DriverManager.getConnection(url,username,password);
+            System.out.println("Connection --> in JDBCDemoServlet"+con);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
@@ -27,6 +66,7 @@ public class RegisterServlet extends HttpServlet {
         String email=request.getParameter("email");
         String sex=request.getParameter("sex");
         String date=request.getParameter("date");
+
         try {
             stmt= con.createStatement();
             String sql="insert into usertable(username,password,email,sex,birth)values('"+username+"','"+password+"','"+email+"','"+sex+"','"+date+"')";
