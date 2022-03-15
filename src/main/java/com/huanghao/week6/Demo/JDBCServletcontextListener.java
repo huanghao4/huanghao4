@@ -20,9 +20,9 @@ public class JDBCServletcontextListener implements ServletContextListener {
         try {
             Class.forName(driver);
             Connection con= DriverManager.getConnection(url,username,password);
-            System.out.println("I am in contextInitialized-->"+con);
+            //System.out.println("I am in contextInitialized-->"+con);
             context.setAttribute("con",con);
-            System.out.println("I am in contextInitialized");
+           // System.out.println("I am in contextInitialized");
            // System.out.println("Connection --> in JDBCDemoServlet"+con);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -34,7 +34,7 @@ public class JDBCServletcontextListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        System.out.println("I am in contextDestroyed");
+        //System.out.println("I am in contextDestroyed");
         sce.getServletContext().removeAttribute("con");
     }
 }
