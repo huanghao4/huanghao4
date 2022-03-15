@@ -3,7 +3,7 @@ public class jdbc {
     public static Connection dbConn;
     public void test(){
         String driverName="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        String dbURL="jdbc:sqlserver://localhost:1433;DatabaseName=register";
+        String dbURL="jdbc:sqlserver://localhost:1433;DatabaseName=userdb";
 
         String userName="huanghao";
         String userPwd="123456";

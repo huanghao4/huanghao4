@@ -5,7 +5,7 @@
          version="4.0">
 <!--    <servlet>-->
 <!--        <servlet-name>Name</servlet-name>-->
-<!--        <servlet-class>com.example.huanghao2020211001001224.Name</servlet-class>-->
+<!--        <servlet-class>com.example.huanghao2020211001001224.HelloServlet</servlet-class>-->
 <!--    </servlet>-->
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
@@ -20,7 +20,7 @@
     </context-param>
     <context-param>
         <param-name>url</param-name>
-        <param-value>jdbc:sqlserver://localhost:1433;DatabaseName=register;encrypt=false</param-value>
+        <param-value>jdbc:sqlserver://localhost:1433;DatabaseName=userdb;encrypt=false</param-value>
     </context-param>
     <context-param>
         <param-name>username</param-name>
@@ -95,6 +95,14 @@
 <!--        <welcome-file>index.jsp</welcome-file>-->
 <!--    </welcome-file-list>-->
 
+<!--    <filter>-->
+<!--        <filter-name>HelloServlet</filter-name>-->
+<!--        <filter-class>com.huanghao.filter.HelloFilter</filter-class>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>HelloFilter</filter-name>-->
+<!--        <url-pattern>/hello</url-pattern>-->
+<!--    </filter-mapping>-->
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
