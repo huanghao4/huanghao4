@@ -29,16 +29,16 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         String email=request.getParameter("email");
         String sex=request.getParameter("sex");
-        String date=request.getParameter("date");
+        String birth=request.getParameter("birth");
+
 
         try {
             stmt= con.createStatement();
-            String sql="insert into usertable(username,password,email,sex,birth)values('"+username+"','"+password+"','"+email+"','"+sex+"','"+date+"')";
+            String sql="insert into usertable(username,password,email,sex,birth)values('"+username+"','"+password+"','"+email+"','"+sex+"','"+birth+"')";
             int count= stmt.executeUpdate(sql);
             System.out.println("成功");
             if (count==1)

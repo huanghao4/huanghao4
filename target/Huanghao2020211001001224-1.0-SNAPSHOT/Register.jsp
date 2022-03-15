@@ -12,7 +12,7 @@
         <input type="email" placeholder="email" name="email"><br>
         <input type="radio" name="sex" value="male" />male
         <input type="radio" name="sex" value="female" />female<br>
-        <input type="text" placeholder="Date of Birth(yy-mm-dd)" name="date"><br>
+        <input type="text" placeholder="Date of Birth(yy-mm-dd)" name="birth"><br>
         <input type="submit" name="submit" id="sb">
     </form>
 
