@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        doPost(request,response);
+        request.getRequestDispatcher("WEB-INF/views/register.jsp").forward(request,response);
     }
 
     @Override
@@ -40,7 +40,6 @@ public class RegisterServlet extends HttpServlet {
             stmt= con.createStatement();
             String sql="insert into usertable(username,password,email,sex,birth)values('"+username+"','"+password+"','"+email+"','"+sex+"','"+birth+"')";
             int count= stmt.executeUpdate(sql);
-            System.out.println("成功");
             if (count==1)
                 System.out.println("增加成功");
             else
@@ -70,7 +69,8 @@ public class RegisterServlet extends HttpServlet {
             //request.getRequestDispatcher("userlist.jsp").forward(request,response);
             //System.out.println("i am in RegisterServlet-->dopost()-->after forword()");
 //            writer.println("</table></body></html>");
-            response.sendRedirect("login.jsp");
+            //week 9
+            response.sendRedirect("login");
         } catch (SQLException e) {
             e.printStackTrace();
         }
