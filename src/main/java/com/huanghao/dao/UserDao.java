@@ -40,16 +40,24 @@ public class UserDao implements IUserDao{
     @Override
     public int updateUser(Connection con, User user) throws SQLException {
         //update...where id=?
-        String sql="update from usertable set password '"+user.getPassword()+"' where username=?";
+        String sql="update usertable set username='"+user.getUsername()+"', password= '"+user.getPassword()+"', email='"+user.getEmail()+"', sex='"+user.getSex()+"', birth='"+user.getBirth()+"' where id='"+user.getId()+"'";
+        System.out.println(sql);
         PreparedStatement st=con.prepareStatement(sql);
+
         int count = st.executeUpdate();
         if (count == 1) {
-            System.out.println("删除成功");
+            System.out.println("成功");
         } else {
-            System.out.println("删除失败");
+            System.out.println("失败");
         }
 
         return count;
+        //TODO 1 write update sql where id=?
+        //TODO 1 create prepared statement
+        //TODO 1 executeUpdate()
+        //TODO 1 return int
+
+
     }
 
     @Override
@@ -75,23 +83,36 @@ public class UserDao implements IUserDao{
     @Override
     public User findByUsernamePassword(Connection con, String username, String password) throws SQLException {
         //select...where username=? and password=?
-        String sql="select id,username,password,email,sex,birth from usertable where username=? and password=?";
-        PreparedStatement st=con.prepareStatement(sql);
-        st.setString(1,username);
-        st.setString(2,password);
-        ResultSet rs=st.executeQuery();
-        User user=null;
-        if (rs.next()){
-            user=new User();
+//        String sql="select id,username,password,email,sex,birth from usertable where username=? and password=?";
+//        PreparedStatement st=con.prepareStatement(sql);
+//        st.setString(1,username);
+//        st.setString(2,password);
+//        ResultSet rs=st.executeQuery();
+//        User user=null;
+//        if (rs.next()){
+//            user=new User();
+//            user.setId(rs.getInt("id"));
+//            user.setUsername(rs.getString("username"));
+//            user.setPassword(rs.getString("password"));
+//            user.setEmail(rs.getString("email"));
+//            user.setSex(rs.getString("sex"));
+//            user.setBirth(rs.getString("birth"));
+//        }
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt
+                .executeQuery("SELECT * from usertable where username='" + username + "' and password='" + password + "'");
+        User user = null;
+        if (rs.next()) {
+            user = new User();
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
-            user.setEmail(rs.getString("email"));
+            user.setEmail(rs.getString("Email"));
             user.setSex(rs.getString("sex"));
             user.setBirth(rs.getString("birth"));
         }
-
         return user;
+
     }
 
     @Override
