@@ -12,6 +12,7 @@
         <servlet-class>com.example.huanghao2020211001001224.RegisterServlet</servlet-class>
     </servlet>
 
+
     <context-param>
         <param-name>driver</param-name>
         <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
@@ -28,6 +29,7 @@
         <param-name>password</param-name>
         <param-value>123456</param-value>
     </context-param>
+
     <!--<servlet>
         <servlet-name>JDBCDemoServlet</servlet-name>
         <servlet-class>com.huanghao.week4.JDBCDemoServlet</servlet-class>
@@ -63,6 +65,8 @@
 <!--            <param-value>2020211001001224</param-value>-->
 <!--        </init-param>-->
 <!--    </servlet>-->
+
+
 <!--    <servlet>-->
 <!--        <servlet-name>LifeCycleServlet</servlet-name>-->
 <!--        <servlet-class>com.example.huanghao2020211001001224.LifeCycleServlet</servlet-class>-->
@@ -86,4 +90,5 @@
     <welcome-file-list>
        <welcome-file>Register.jsp</welcome-file>
    </welcome-file-list>
+
 </web-app>

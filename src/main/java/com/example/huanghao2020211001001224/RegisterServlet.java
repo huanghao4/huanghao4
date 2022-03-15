@@ -22,11 +22,13 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //插
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         String email=request.getParameter("email");
         String sex=request.getParameter("sex");
         String date=request.getParameter("date");
+
         try {
             stmt= con.createStatement();
             String sql="insert into usertable(username,password,email,sex,birth)values('"+username+"','"+password+"','"+email+"','"+sex+"','"+date+"')";
@@ -40,6 +42,7 @@ public class RegisterServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+        //查
         try {
             stmt = con.createStatement();
         } catch (SQLException e) {

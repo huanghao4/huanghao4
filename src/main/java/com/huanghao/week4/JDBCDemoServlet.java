@@ -24,10 +24,10 @@ public class JDBCDemoServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-//        String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";//name=value
-//        String url="jdbc:sqlserver://localhost:1433;DatabaseName=register;encrypt=false";
-//        String username="huanghao";
-//        String userpwd="123456";
+        String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";//name=value
+        String url="jdbc:sqlserver://localhost:1433;DatabaseName=register;encrypt=false";
+        String username="huanghao";
+        String password="123456";
         //1、get servlet config
         //ServletConfig config=getServletConfig();
         //2、get param
@@ -36,16 +36,20 @@ public class JDBCDemoServlet extends HttpServlet {
         //String username=config.getInitParameter("username");
         //String password=config.getInitParameter("password");
 
-        ServletContext context=getServletContext();
-        String driver=context.getInitParameter("driver");
-        String url=context.getInitParameter("url");
-        String username=context.getInitParameter("username");
-        String password=context.getInitParameter("password");
+//        ServletContext context=getServletContext();
+//        String driver=context.getInitParameter("driver");
+//        String url=context.getInitParameter("url");
+//        String username=context.getInitParameter("username");
+//        String password=context.getInitParameter("password");
+//        System.out.println("成功");
 
         try {
             Class.forName(driver);
+            System.out.println("成功");
             con= DriverManager.getConnection(url,username,password);
+            System.out.println("连接成功");
             System.out.println("Connection --> in JDBCDemoServlet"+con);
+            System.out.println("连接成功");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -60,13 +64,12 @@ public class JDBCDemoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         String email=request.getParameter("email");
         String sex=request.getParameter("sex");
         String date=request.getParameter("date");
-
+        System.out.println("insert into usertable(username,password,email,sex,birth)values('"+username+"','"+password+"','"+email+"','"+sex+"','"+date+"')");
         try {
             stmt= con.createStatement();
             String sql="insert into usertable(username,password,email,sex,birth)values('"+username+"','"+password+"','"+email+"','"+sex+"','"+date+"')";
@@ -90,26 +93,12 @@ public class JDBCDemoServlet extends HttpServlet {
             ResultSet rs= stmt.executeQuery(sql);
             if(rs.next()){
                 PrintWriter writer=response.getWriter();
-                writer.println("<html>");
-                writer.println("<head><title>table</title></head>");
-                writer.println("<body><table>");
-                writer.println("<tr>");
-                writer.println("<td>username</td>");
-                writer.println("<td>password</td>");
-                writer.println("<td>email</td>");
-                writer.println("<td>sex</td>");
-                writer.println("<td>birth</td>");
-                writer.println("</tr>");
-                writer.println("<tr>");
-                writer.println("<td>"+username+"</td>");
-                writer.println("<td>"+password+"</td>");
-                writer.println("<td>"+email+"</td>");
-                writer.println("<td>"+sex+"</td>");
-                writer.println("<td>"+date+"</td>");
-                writer.println("</tr>");
-                writer.println("</table>");
-                writer.println("</body>");
-                writer.println("</html>");
+                writer.println(username);
+                writer.println(password);
+                writer.println(email);
+                writer.println(sex);
+                writer.println(date);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
