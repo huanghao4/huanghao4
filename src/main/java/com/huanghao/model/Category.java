@@ -86,12 +86,12 @@ public class Category {
     public static String FindByCategoryId(Connection con,int categoryId){
         String categoryName=null;
         try {
-            String queryString ="select CategoryName from Category where CategoryId=?";
+            String queryString ="select * from Category where CategoryId=?";
             PreparedStatement statement= con.prepareStatement(queryString);
             statement.setInt(1,categoryId);
             ResultSet resultSet=statement.executeQuery();
             while (resultSet.next()){
-                categoryName= resultSet.getString("CategoryName");
+                categoryName= resultSet.getString("categoryName");
             }
         }catch (Exception re){
             re.printStackTrace();
