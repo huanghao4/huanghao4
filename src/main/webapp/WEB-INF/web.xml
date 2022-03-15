@@ -11,6 +11,7 @@
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.example.huanghao2020211001001224.RegisterServlet</servlet-class>
     </servlet>
+    
 
 
     <context-param>
@@ -22,7 +23,7 @@
         <param-value>jdbc:sqlserver://localhost:1433;DatabaseName=register;encrypt=false</param-value>
     </context-param>
     <context-param>
-        <param-name>usrname</param-name>
+        <param-name>username</param-name>
         <param-value>huanghao</param-value>
     </context-param>
     <context-param>
@@ -90,5 +91,8 @@
     <welcome-file-list>
        <welcome-file>Register.jsp</welcome-file>
    </welcome-file-list>
+<!--    <welcome-file-list>-->
+<!--        <welcome-file>index.jsp</welcome-file>-->
+<!--    </welcome-file-list>-->
 
 </web-app>

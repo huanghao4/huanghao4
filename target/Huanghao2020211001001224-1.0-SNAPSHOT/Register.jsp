@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@include file="header.jsp"%>
-    <form name="form" method="post" action="jdbc">
+    <form name="form" method="post" action="register">
         <input type="text" placeholder="username" name="username"><br>
         <input type="password" placeholder="password" name="password"><br>
         <input type="email" placeholder="email" name="email"><br>

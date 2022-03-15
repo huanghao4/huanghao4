@@ -14,15 +14,22 @@ import java.sql.Statement;
 public class RegisterServlet extends HttpServlet {
     Connection con=null;
     Statement stmt=null;
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        con= (Connection) getServletContext().getAttribute("con");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        doPost(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //插
+
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         String email=request.getParameter("email");
@@ -42,38 +49,28 @@ public class RegisterServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        //查
+
+
+        //String sql="select * from usertable ";
         try {
             stmt = con.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        String sql="select username,password,email,sex,birth from usertable ";
-        try {
-            ResultSet rs= stmt.executeQuery(sql);
-            if(rs.next()){
-                PrintWriter writer=response.getWriter();
-                writer.println("<html>");
-                writer.println("<head><title>table</title></head>");
-                writer.println("<body><table>");
-                writer.println("<tr>");
-                writer.println("<td>username</td>");
-                writer.println("<td>password</td>");
-                writer.println("<td>email</td>");
-                writer.println("<td>sex</td>");
-                writer.println("<td>birth</td>");
-                writer.println("</tr>");
-                writer.println("<tr>");
-                writer.println("<td>"+username+"</td>");
-                writer.println("<td>"+password+"</td>");
-                writer.println("<td>"+email+"</td>");
-                writer.println("<td>"+sex+"</td>");
-                writer.println("<td>"+date+"</td>");
-                writer.println("</tr>");
-                writer.println("</table>");
-                writer.println("</body>");
-                writer.println("</html>");
-            }
+            //ResultSet rs= stmt.executeQuery(sql);
+//            PrintWriter writer=response.getWriter();
+//            writer.println("<html><title></title><body><table broder=1><tr>");
+//            writer.println("<td>username</td><td>password</td><td>email</td><td>sex</td><td>birth</td>");
+//            while(rs.next()){
+//                writer.println("<tr>");
+//                writer.println("<td>"+rs.getString("username")+"</td>");
+//                writer.println("<td>"+rs.getString("password")+"</td>");
+//                writer.println("<td>"+rs.getString("email")+"</td>");
+//                writer.println("<td>"+rs.getString("sex")+"</td>");
+//                writer.println("<td>"+rs.getString("birth")+"</td>");
+//                writer.println("</tr>");}
+            //request.setAttribute("rsname",rs);
+            //request.getRequestDispatcher("userlist.jsp").forward(request,response);
+            //System.out.println("i am in RegisterServlet-->dopost()-->after forword()");
+//            writer.println("</table></body></html>");
+            response.sendRedirect("login.jsp");
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -24,10 +24,10 @@ public class JDBCDemoServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";//name=value
-        String url="jdbc:sqlserver://localhost:1433;DatabaseName=register;encrypt=false";
-        String username="huanghao";
-        String password="123456";
+//        String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";//name=value
+//        String url="jdbc:sqlserver://localhost:1433;DatabaseName=register;encrypt=false";
+//        String username="huanghao";
+//        String password="123456";
         //1、get servlet config
         //ServletConfig config=getServletConfig();
         //2、get param
@@ -43,18 +43,19 @@ public class JDBCDemoServlet extends HttpServlet {
 //        String password=context.getInitParameter("password");
 //        System.out.println("成功");
 
-        try {
-            Class.forName(driver);
-            System.out.println("成功");
-            con= DriverManager.getConnection(url,username,password);
-            System.out.println("连接成功");
-            System.out.println("Connection --> in JDBCDemoServlet"+con);
-            System.out.println("连接成功");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Class.forName(driver);
+//            System.out.println("成功");
+//            con= DriverManager.getConnection(url,username,password);
+//            System.out.println("连接成功");
+//            System.out.println("Connection --> in JDBCDemoServlet"+con);
+//            System.out.println("连接成功");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        con= (Connection) getServletContext().getAttribute("con");
     }
 
     @Override
@@ -83,23 +84,30 @@ public class JDBCDemoServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+//        try {
+//            stmt = con.createStatement();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        String sql="select * from usertable ";
         try {
             stmt = con.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        String sql="select username,password,email,sex,birth from usertable ";
-        try {
             ResultSet rs= stmt.executeQuery(sql);
-            if(rs.next()){
-                PrintWriter writer=response.getWriter();
-                writer.println(username);
-                writer.println(password);
-                writer.println(email);
-                writer.println(sex);
-                writer.println(date);
-
-            }
+//            PrintWriter writer=response.getWriter();
+//            writer.println("<html><title></title><body><table broder=1><tr>");
+//            writer.println("<td>username</td><td>password</td><td>email</td><td>sex</td><td>birth</td>");
+//            while(rs.next()){
+//                writer.println("<tr>");
+//                writer.println("<td>"+rs.getString("username")+"</td>");
+//                writer.println("<td>"+rs.getString("password")+"</td>");
+//                writer.println("<td>"+rs.getString("email")+"</td>");
+//                writer.println("<td>"+rs.getString("sex")+"</td>");
+//                writer.println("<td>"+rs.getString("birth")+"</td>");
+//                writer.println("</tr>");}
+            request.setAttribute("rsname",rs);
+            request.getRequestDispatcher("userlist.jsp").forward(request,response);
+            System.out.println("i am in RegisterServlet-->dopost()-->after forword()");
+//            writer.println("</table></body></html>");
         } catch (SQLException e) {
             e.printStackTrace();
         }
